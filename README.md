@@ -1,3 +1,13 @@
+---
+title: Archery Tether Propulsion Systems
+emoji: 🏹
+colorFrom: green
+colorTo: blue
+sdk: docker
+app_file: app.py
+pinned: false
+---
+
 # Archery Tether Propulsion Systems (ATPS)
 ## Kinetic Active Protection System Simulation
 
