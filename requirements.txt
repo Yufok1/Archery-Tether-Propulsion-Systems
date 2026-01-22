@@ -1,5 +1,8 @@
 # Archery Tether Propulsion Systems - Dependencies
 
+# Streamlit UI
+streamlit>=1.30.0
+
 # Core Physics Engine
 numpy>=1.24.0
 scipy>=1.11.0
