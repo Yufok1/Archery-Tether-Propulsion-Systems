@@ -1,0 +1,117 @@
+# =============================================================================
+# ARCHERY TETHER PROPULSION SYSTEMS - SIMULATION PARAMETERS
+# =============================================================================
+# All units in SI (meters, kilograms, seconds, Newtons)
+
+# -----------------------------------------------------------------------------
+# MOTHER DRONE (Central High-Value Asset)
+# -----------------------------------------------------------------------------
+mother_drone:
+  mass: 150.0                    # kg - Large surveillance drone
+  wingspan: 8.0                  # meters - "Buzzard wing" configuration
+  max_thrust: 2500.0             # Newtons - Engine output at 100%
+  cruise_thrust_ratio: 0.9       # Fraction of max thrust during tow operations
+  drag_coefficient: 0.025        # Cd for streamlined body
+  frontal_area: 1.2              # m² - Cross-sectional area
+  
+  # Center of gravity management
+  cog_offset_x: 0.0              # meters from geometric center
+  cog_offset_z: -0.15            # slight belly-heavy for stability
+
+# -----------------------------------------------------------------------------
+# TOWED AERODYNAMIC BODIES (TABs) - The "Skiers"
+# -----------------------------------------------------------------------------
+towed_bodies:
+  count: 4                       # Cross formation: UP, DOWN, LEFT, RIGHT
+  
+  physical:
+    mass: 8.0                    # kg each - lightweight interceptors
+    wingspan: 1.5                # meters - small lifting wings
+    chord: 0.3                   # meters - wing depth
+    drag_coefficient: 0.08       # Higher Cd due to compact shape
+    frontal_area: 0.15           # m²
+  
+  control_surfaces:
+    elevator_authority: 25.0     # degrees max deflection
+    aileron_authority: 30.0      # degrees max deflection  
+    rudder_authority: 20.0       # degrees max deflection
+    actuation_rate: 200.0        # degrees per second - HIGH SPEED servos
+  
+  lift_model:
+    cl_alpha: 5.7                # Lift coefficient slope (per radian)
+    cl_max: 1.4                  # Stall limit
+    aspect_ratio: 5.0            # Wingspan² / wing_area
+
+# -----------------------------------------------------------------------------
+# TETHER CABLES
+# -----------------------------------------------------------------------------
+cables:
+  length: 30.0                   # meters (100 feet ≈ 30m)
+  material: "dyneema"            # Ultra-high molecular weight polyethylene
+  diameter: 0.004                # meters (4mm)
+  breaking_strength: 15000.0     # Newtons (~3300 lbs)
+  linear_density: 0.012          # kg/m
+  stiffness: 1.2e9               # N/m² - Young's modulus for stretch calc
+  damping: 0.15                  # Damping ratio for oscillation control
+  
+  # Constraint physics
+  max_tension: 12000.0           # N - Operating limit (80% of breaking)
+  min_tension: 50.0              # N - Prevent cable slack/tangle
+
+# -----------------------------------------------------------------------------
+# ATMOSPHERIC CONDITIONS
+# -----------------------------------------------------------------------------
+atmosphere:
+  air_density: 1.225             # kg/m³ at sea level
+  wind_speed: 0.0                # m/s - can add turbulence later
+  wind_direction: [1.0, 0.0, 0.0]
+  turbulence_intensity: 0.0      # 0-1 scale
+
+# -----------------------------------------------------------------------------
+# DEFENSIVE MATRIX AI PARAMETERS
+# -----------------------------------------------------------------------------
+defensive_ai:
+  # Threat detection
+  detection_radius: 500.0        # meters - sensor range
+  tracking_update_rate: 100.0    # Hz - how fast AI recalculates
+  
+  # Intercept geometry
+  intercept_lead_time: 0.5       # seconds - predict ahead
+  swing_threshold: 15.0          # degrees - min swing angle for release
+  
+  # Formation maintenance
+  formation_tolerance: 2.0       # meters - allowable deviation
+  correction_gain: 0.8           # PID-style proportional gain
+  
+  # Release decisions
+  release_velocity_boost: 1.3    # Expected velocity multiplier on release
+  sacrifice_threshold: 0.85      # Confidence level to sacrifice TAB
+
+# -----------------------------------------------------------------------------
+# SLINGSHOT PHYSICS
+# -----------------------------------------------------------------------------
+slingshot:
+  # Orbital wind-up
+  spiral_rate: 45.0              # degrees/second rotation
+  max_orbital_velocity: 80.0     # m/s - TAB speed at cable end
+  
+  # Release mechanics
+  release_latency: 0.005         # seconds - mechanical delay
+  cable_whip_damping: 0.3        # Prevent cable striking mother drone
+  
+  # Momentum transfer
+  conservation_efficiency: 0.95  # 95% of momentum transfers to TAB
+
+# -----------------------------------------------------------------------------
+# SIMULATION ENGINE
+# -----------------------------------------------------------------------------
+simulation:
+  timestep: 0.001                # seconds (1000 Hz physics)
+  render_rate: 60                # FPS for visualization
+  duration: 60.0                 # seconds - default sim length
+  
+  gravity: [0.0, 0.0, -9.81]     # m/s² - Earth standard
+  
+  # Bullet physics integration
+  bullet_substeps: 10            # Physics substeps per frame
+  constraint_iterations: 20      # Solver iterations for cable stability

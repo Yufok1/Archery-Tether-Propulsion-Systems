@@ -1,0 +1,12 @@
+{
+  "episode_count": 3,
+  "total_steps": 15000,
+  "best_reward": 2655.2539885905267,
+  "episode_rewards": [
+    29.75304947410822,
+    -3619.071704162995,
+    2655.2539885905267
+  ],
+  "discoveries": [],
+  "discovery_count": 0
+}

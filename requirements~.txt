@@ -1,0 +1,9 @@
+numpy>=1.21.0,<2.0
+cascade-lattice>=0.1.3
+rerun-sdk>=0.28.0
+jax>=0.4.20
+jaxlib>=0.4.20
+ninjax>=3.5.0
+elements>=3.19.0
+einops>=0.8.0
+portal>=0.2.0

@@ -1,0 +1,36 @@
+# Archery Tether Propulsion Systems - Dependencies
+
+# Core Physics Engine
+numpy>=1.24.0
+scipy>=1.11.0
+
+# 3D Visualization (Panda3D - the Disney/NASA-grade engine)
+panda3d>=1.10.14
+
+# Bullet Physics Integration (built into Panda3D, but explicit for constraints)
+# panda3d includes bullet bindings
+
+# Configuration
+pyyaml>=6.0
+
+# Optional: Advanced numerics for aeroelastic simulation
+numba>=0.58.0  # JIT compilation for real-time physics
+
+# Testing
+pytest>=7.4.0
+
+# Visualization helpers
+matplotlib>=3.8.0  # For 2D trajectory plots
+
+# RL Training
+gymnasium>=0.29.0
+
+# CASCADE Provenance + HOLD System (DreamerV3 inference halt protocol)
+cascade-lattice>=0.6.0
+
+# Champion Brain (DreamerV3 RSSM) - hosted model
+# https://huggingface.co/tostido/Champion-Dreamer
+huggingface_hub>=0.20.0
+# DreamerV3 Champion Capsule Dependencies (for loading evolved brains)
+# Note: Full DreamerV3 deps (jax, etc) only needed if training
+# For inference-only, capsules use numpy-based QuineBrain
