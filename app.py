@@ -50,25 +50,15 @@ st.markdown("""
 
 """)
 
-col1, col2 = st.columns(2)
+st.markdown("### Champion-Dreamer (Unified Brain)")
+st.code("""
+Single world-model agent controlling the full constellation:
+- Stall avoidance & gust response (reflex)
+- Tension prediction & feedback (coordination)
+- Imagination-based planning (dreamer loop)
 
-with col1:
-    st.markdown("### Champion (Airfoil Nodes)")
-    st.code("""
-    Local reflex control:
-    - Stall avoidance
-    - Gust response  
-    - Tension feedback
-    """)
-
-with col2:
-    st.markdown("### Dreamer (Tether Links)")
-    st.code("""
-    Relationship modeling:
-    - Tension prediction
-    - Coordination planning
-    - World model imagination
-    """)
+One brain. Ten sails. Shared imagination.
+""")
 
 st.markdown("---")
 
